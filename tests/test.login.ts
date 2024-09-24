@@ -1,5 +1,11 @@
 import loginPage from '../src/pageobjects/login.page';
 
+const users = {
+    "admin": 2785,
+    "employee": 2786,
+    "manager": 2789,
+};
+
 describe('My Login application', () => {
     it('should login with valid credentials', async () => {
         await loginPage.pinField.isDisplayed();
@@ -8,6 +14,6 @@ describe('My Login application', () => {
         await loginPage.signInButton.isDisplayed();
         console.log('see sign in button')
 
-        await loginPage.login(2785);
+        await loginPage.login(users.admin);
     })
 })
