@@ -1,5 +1,9 @@
-import type { Options } from '@wdio/types'
+import { Options } from '@wdio/types';
+import '@wdio/globals';
 import { Capabilities } from 'selenium-webdriver';
+import loginPage from './src/pageobjects/login.page';
+import proshopPage from './src/pageobjects/proshop.page';
+import navDrawer from './src/pageobjects/navdrawer.page';
 export const config: Options.Testrunner = {
     //
     // ====================
@@ -214,13 +218,19 @@ export const config: Options.Testrunner = {
      * @param {object}         browser      instance of created browser/device session
      */
     //need to figure out why this keeps getting skipped
-    // before: function (capabilities, specs) {
-    //     driver.terminateApp('tenfore.birdie');
-    //     console.log('previous session terminated')
-    //     console.log('Launching app')
-    //     driver.startActivity('tenfore.birdie', 'tenfore.birdie.ActivityLoginPin');
-    //     console.log('app launched')
-    // },
+    before: async function () {
+        // Run login before each test globally
+        const users = {
+            "admin": 2785,
+            "employee": 2786,
+            "manager": 2789,
+        };
+        await loginPage.pinField.isDisplayed();
+        await loginPage.signInButton.isDisplayed();
+        await loginPage.login(users.manager);
+        await proshopPage.proShopTitle.isDisplayed();
+    },
+
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {string} commandName hook command name
@@ -261,17 +271,10 @@ export const config: Options.Testrunner = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    //need to figure out why this keeps getting skipped
-    // afterTest: async function(test, context, { error, result, duration, passed, retries }) {
-    //     if (!passed) {
-    //         await browser.takeScreenshot();
-    //     }
-    //     const navDrawerButton = $('//android.widget.ImageButton[@content-desc="Open navigation drawer"]');
-    //     const logOutButton = $('tenfore.birdie:id/nav_log_out');
-    //     navDrawerButton.click();
-    //     logOutButton.click();
-    //     driver.terminateApp('tenfore.birdie');
-    // },
+    after: async function() {
+        await proshopPage.openNav();
+        await navDrawer.logout();
+    },
 
 
     /**
@@ -279,11 +282,6 @@ export const config: Options.Testrunner = {
      * @param {object} suite suite details
      */
     // afterSuite: function (suite) {
-    //     const navDrawerButton = $('//android.widget.ImageButton[@content-desc="Open navigation drawer"]');
-    //     const logOutButton = $('tenfore.birdie:id/nav_log_out');
-    //     navDrawerButton.click();
-    //     logOutButton.click();
-    //     driver.terminateApp('tenfore.birdie');
     // },
     /**
      * Runs after a WebdriverIO command gets executed
@@ -340,4 +338,4 @@ export const config: Options.Testrunner = {
     */
     // afterAssertion: function(params) {
     // }
-}
+};

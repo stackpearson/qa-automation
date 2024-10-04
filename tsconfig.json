@@ -9,10 +9,14 @@
         ],
         "types": [
             "node",
-            "@wdio/globals/types",
-            "expect-webdriverio",
-            "@wdio/mocha-framework",
-            "@wdio/appium-service"
+            // "@wdio/globals/types",
+            // "expect-webdriverio",
+            // "@wdio/mocha-framework",
+            // "@wdio/appium-service",
+        ],
+        "typeRoots": [
+            "./node_modules/@types",
+            "./src/types/**/**",
         ],
         "skipLibCheck": true,
         "noEmit": true,
@@ -26,6 +30,8 @@
     },
     "include": [
         "test",
-        "wdio.conf.ts"
+        "wdio.conf.ts",
+        "src/**/*",
+        "src/types/global.d.ts",
     ]
 }
