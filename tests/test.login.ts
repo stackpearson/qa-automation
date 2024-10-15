@@ -1,19 +1,15 @@
-import loginPage from '../src/pageobjects/login.page';
+import navBarPage from '../src/pageobjects/navBar.page';
 
-const users = {
+const userPins = {
     "admin": 2785,
-    "employee": 2786,
+    "employee": 2788,
     "manager": 2789,
 };
 
-describe('My Login application', () => {
-    it('should login with valid credentials', async () => {
-        await loginPage.pinField.isDisplayed();
-        console.log('see pin field')
-
-        await loginPage.signInButton.isDisplayed();
-        console.log('see sign in button')
-
-        await loginPage.login(users.admin);
+describe('Basic login & logout', () => {
+    it('should login with valid credentials, display correct user name & logout succesfully', async () => {
+        await navBarPage.proShopTitle.isDisplayed();
+        const userText = await navBarPage.userName.getText();
+        expect(userText).toBe('OAKS MANAGER'); //if this fails, make sure to check which user is logging in in wdio.conf.ts before method
     })
 })

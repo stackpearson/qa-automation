@@ -23,6 +23,11 @@ export default class Page {
     public clickElement (elementSelector: string) {
         return $(elementSelector).click(); // Replace with your mobile-specific selector
     }
+
+    public scrollToElement (strategy_text: string, selector_text: string) {
+        (browser as any).execute('mobile: scroll', { strategy: `${strategy_text}`, selector: `${selector_text}` });
+    }
+
 }
 
 
