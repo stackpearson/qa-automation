@@ -2,8 +2,7 @@ import { Options } from '@wdio/types';
 import '@wdio/globals';
 import { Capabilities } from 'selenium-webdriver';
 import loginPage from './src/pageobjects/login.page';
-import proshopPage from './src/pageobjects/proshop.page';
-import navDrawer from './src/pageobjects/navdrawer.page';
+import navBarPage from './src/pageobjects/navBar.page';
 export const config: Options.Testrunner = {
     //
     // ====================
@@ -228,7 +227,7 @@ export const config: Options.Testrunner = {
         await loginPage.pinField.isDisplayed();
         await loginPage.signInButton.isDisplayed();
         await loginPage.login(users.manager);
-        await proshopPage.proShopTitle.isDisplayed();
+        await navBarPage.proShopTitle.isDisplayed();
     },
 
     /**
@@ -272,8 +271,10 @@ export const config: Options.Testrunner = {
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
     after: async function() {
-        await proshopPage.openNav();
-        await navDrawer.logout();
+        // await proshopPage.openNav();
+        // await navBarPage.openNav();
+        // await navDrawer.logout();
+        await navBarPage.logOut();
     },
 
 

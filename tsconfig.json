@@ -9,14 +9,17 @@
         ],
         "types": [
             "node",
-            // "@wdio/globals/types",
+            "@wdio/globals/types",
+            "@wdio/types",
             // "expect-webdriverio",
             // "@wdio/mocha-framework",
             // "@wdio/appium-service",
         ],
         "typeRoots": [
             "./node_modules/@types",
+            "./node_modules/@wdio",
             "./src/types/**/**",
+            "@wdio/globals/types"
         ],
         "skipLibCheck": true,
         "noEmit": true,
