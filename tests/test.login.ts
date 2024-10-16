@@ -1,4 +1,4 @@
-import navBarPage from '../src/pageobjects/navBar.page';
+import navBarPage from '../src/pageobjects/sharedScreens/navBar.page';
 
 const userPins = {
     "admin": 2785,

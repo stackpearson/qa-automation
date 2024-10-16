@@ -1,3 +1,4 @@
+import { $ } from '@wdio/globals'
 import { browser } from '@wdio/globals';
 
 /**

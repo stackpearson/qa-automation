@@ -10,10 +10,7 @@
         "types": [
             "node",
             "@wdio/globals/types",
-            "@wdio/types",
-            // "expect-webdriverio",
-            // "@wdio/mocha-framework",
-            // "@wdio/appium-service",
+            "@wdio/types"
         ],
         "typeRoots": [
             "./node_modules/@types",

@@ -1,10 +1,13 @@
 import { $ } from '@wdio/globals'
-import Page from './page';
+import Page from '../page';
 
 class BottomButtonsPage extends Page {
     //selectors
+    public applyPaymentButton() {
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnApplyPayment"]');
+    }
     public combosButton() {
-        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnCombos"]')
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnCombos"]');
     }
 
     public customerButton() {
@@ -16,7 +19,7 @@ class BottomButtonsPage extends Page {
     }
 
     public payButton() {
-        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnApplyPayment"]')
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnApplyPayment"]');
     } 
 
     public popButton() {
@@ -37,38 +40,32 @@ class BottomButtonsPage extends Page {
 
     //methods
     public async tapCombosButton() {
-        const button = this.combosButton();
-        button.click();
+        await this.combosButton().click();
     }
 
     public async tapCustomerButton() {
-        const button = this.customerButton();
-        button.click();
+        await this.customerButton().click();
     }
 
     public async tapOrderNotesButton() {
-        const button = this.orderNotesButton();
-        button.click();
+        await this.orderNotesButton().click();
     }
 
     public async tapPayButton() {
-        const button = this.payButton();
-        button.click();
+        await this.payButton().waitForEnabled();
+        await this.payButton().click();
     }
 
     public async tapProShopButton() {
-        const button = this.proShopButton();
-        button.click()
+        await this.proShopButton().click();
     }
 
     public async tapResetButton() {
-        const button = this.resetButton();
-        button.click();
+        await this.resetButton().click();
     }
 
     public async tapTeeSheetButton() {
-        const button = this.teeSheetButton();
-        button.click();
+        await this.teeSheetButton().click();
     }
 
 }

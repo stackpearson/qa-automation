@@ -1,5 +1,5 @@
 import { $ } from '@wdio/globals'
-import Page from './page';
+import Page from '../page';
 
 class ProshopCategoryPage extends Page {
     //selectors
