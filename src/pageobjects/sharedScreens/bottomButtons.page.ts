@@ -3,9 +3,6 @@ import Page from '../page';
 
 class BottomButtonsPage extends Page {
     //selectors
-    public applyPaymentButton() {
-        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnApplyPayment"]');
-    }
     public combosButton() {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnCombos"]');
     }

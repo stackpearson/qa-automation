@@ -15,6 +15,10 @@ class NavBarPage extends Page {
         return $('//android.widget.TextView[@text="Pro Shop Order"]');
     }
 
+    public get threeDotsButton() {
+        return $('//android.widget.ImageView[@content-desc="More options"]');
+    }
+
     public get userName () {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/menu_item_username"]');
     }
@@ -23,6 +27,11 @@ class NavBarPage extends Page {
     public async logOut () {
         await this.logoutButton.click();
     }
+
+    public async tapThreeDots () {
+        await this.threeDotsButton.click();
+    }
+
     public async openNav () {
         await this.navDrawer.click();
     }
