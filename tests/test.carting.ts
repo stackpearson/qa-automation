@@ -15,7 +15,6 @@ describe('Core functionality', () => {
         await proshopCategoryPage.selectCategory(category);
         await wdioExpect (await proshopProductPage.productTileByName(productName)).toBeDisplayed();
 
-
         //add item to cart & confirm it's presence in the side cart
         await proshopProductPage.addToCart(productName);
         await wdioExpect (await proshopSideCartPage.productByName(productName)).toBeDisplayed();

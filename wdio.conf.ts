@@ -216,7 +216,7 @@ export const config: Options.Testrunner = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    //need to figure out why this keeps getting skipped
+    //login before every test suite
     before: async function () {
         // Run login before each test globally
         const users = {
@@ -270,10 +270,8 @@ export const config: Options.Testrunner = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
+    //logout after every test
     after: async function() {
-        // await proshopPage.openNav();
-        // await navBarPage.openNav();
-        // await navDrawer.logout();
         await navBarPage.logOut();
     },
 
