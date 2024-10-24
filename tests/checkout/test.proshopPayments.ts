@@ -1,48 +1,59 @@
-import proshopCategoryPage from '../../src/pageobjects/productScreens/proshopCategory.page';
-import proshopProductPage from '../../src/pageobjects/productScreens/proshopProduct.page';
 import bottomButtonsPage from '../../src/pageobjects/sharedScreens/bottomButtons.page';
-import paymentSelectionPage from '../../src/pageobjects/paymentScreens/paymentSelection.page';
 import cashPaymentPage from '../../src/pageobjects/paymentScreens/cashPayment.page';
-import receiptPage from '../../src/pageobjects/checkout/receipt.page';
+import checkPaymentPage from '../../src/pageobjects/paymentScreens/checkPayment.page';
+import giftCardPaymentPage from '../../src/pageobjects/paymentScreens/giftCardPayment.page';
+import memberPayment from '../../src/pageobjects/paymentScreens/memberPayment.page';
 import navBar from '../../src/pageobjects/sharedScreens/navBar.page';
 import navDrawer from '../../src/pageobjects/sharedScreens/navdrawer.page';
-import giftCardPaymentPage from '../../src/pageobjects/paymentScreens/giftCardPayment.page';
-import checkPaymentPage from '../../src/pageobjects/paymentScreens/checkPayment.page';
+import paymentSelectionPage from '../../src/pageobjects/paymentScreens/paymentSelection.page';
+import proshopCategoryPage from '../../src/pageobjects/productScreens/proshopCategory.page';
+import proshopProductPage from '../../src/pageobjects/productScreens/proshopProduct.page';
+import rainCheck from '../../src/pageobjects/paymentScreens/rainPayment.page';
+import receiptPage from '../../src/pageobjects/checkout/receipt.page';
+
+
 import {expect as wdioExpect } from '@wdio/globals';
+import Page from '../../src/pageobjects/page';
+import { browser } from '@wdio/globals';
+import { $$, $ } from '@wdio/globals';
 
 describe('Proshop Payments -', () => {
 
     const category = 'Shirts - SO';
+    const memberEmail = 'sawyer.pearson+saved.card@tenfore.golf';
     const productName = 'Nike Shirt';
     const fullGiftCardUPC = '1024225254';
+    const randomCheckNumber = Math.floor(100 + Math.random() * 900).toString();
+    const rainOnlyUser = 'sawyer.pearson+full.rain@tenfore.golf';
+    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
-    // it('Credit', async () => {
-    //     await navBar.openNav();
-    //     await navDrawer.clickProshopButton();
-    //     await proshopCategoryPage.selectCategory(category);
-    //     await proshopProductPage.addToCart(productName);
-    //     await bottomButtonsPage.tapPayButton();
-    //     await paymentSelectionPage.selectPaymentType('credit');
-    //     await bottomButtonsPage.tapPayButton();
-    //     await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-    //     await receiptPage.clickProShop();
-    // });
+    it('Credit', async () => {
+        await navBar.openNav();
+        await navDrawer.clickProshopButton();
+        await proshopCategoryPage.selectCategory(category);
+        await proshopProductPage.addToCart(productName);
+        await bottomButtonsPage.tapPayButton();
+        await paymentSelectionPage.selectPaymentType('credit');
+        await bottomButtonsPage.tapPayButton();
+        await sleep(5000);
+        await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
+        await receiptPage.clickProShop();
+    });
 
-    // it('Cash', async () => {
-    //     await navBar.openNav();
-    //     await navDrawer.clickProshopButton();
-    //     await proshopCategoryPage.selectCategory(category);
-    //     await proshopProductPage.addToCart(productName);
-    //     await bottomButtonsPage.tapPayButton();
-    //     await paymentSelectionPage.selectPaymentType('cash');
-    //     await bottomButtonsPage.tapPayButton();
-    //     await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-    //     await receiptPage.clickProShop();
+    it('Cash', async () => {
+        await navBar.openNav();
+        await navDrawer.clickProshopButton();
+        await proshopCategoryPage.selectCategory(category);
+        await proshopProductPage.addToCart(productName);
+        await bottomButtonsPage.tapPayButton();
+        await paymentSelectionPage.selectPaymentType('cash');
+        await bottomButtonsPage.tapPayButton();
+        await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
+        await receiptPage.clickProShop();
 
-    // });
+    });
 
-    //todo start with GC & continue moving down the list of cases
-
+// todo find a way to interact with the GC drop down, the modal is not accessible via wdio/appium and doesn't show in the inspector
     it('Gift Card', async () => {
         await navBar.openNav();
         await navDrawer.clickProshopButton();
@@ -50,35 +61,60 @@ describe('Proshop Payments -', () => {
         await proshopProductPage.addToCart(productName);
         await bottomButtonsPage.tapPayButton();
         await paymentSelectionPage.selectPaymentType('giftcard');
-        await giftCardPaymentPage.selectGiftCard(fullGiftCardUPC);
-
+        await giftCardPaymentPage.searchGiftCard(fullGiftCardUPC);
+        await sleep(2500);
+        await giftCardPaymentPage.tapGiftCardResult();
+        await bottomButtonsPage.tapPayButton();
+        await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
+        await receiptPage.clickProShop();
     });
 
-    // it('Rain', async () => {
-        // await navBar.openNav();
-        // await navDrawer.clickProshopButton();
-        // await proshopCategoryPage.selectCategory(category);
-        // await proshopProductPage.addToCart(productName);
-        // await bottomButtonsPage.tapPayButton();
-    // });
+//todo improve rain check methods, same issue as GCs
+    it('Rain Check', async () => {
+        await navBar.openNav();
+        await navDrawer.clickProshopButton();
+        await proshopCategoryPage.selectCategory(category);
+        await proshopProductPage.addToCart(productName);
+        await bottomButtonsPage.tapPayButton();
+        await paymentSelectionPage.selectPaymentType('raincheck');
+        await rainCheck.searcRainChecks(rainOnlyUser);
+        await sleep(2500);
+        await rainCheck.selectFirstRainResult();
+        await bottomButtonsPage.tapPayButton();
+        await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
+        await receiptPage.clickProShop();
+    });
 
-    // it('Check', async () => {
-        // await navBar.openNav();
-        // await navDrawer.clickProshopButton();
-        // await proshopCategoryPage.selectCategory(category);
-        // await proshopProductPage.addToCart(productName);
-        // await bottomButtonsPage.tapPayButton();
-    // });
+    it('Check', async () => {
+        await navBar.openNav();
+        await navDrawer.clickProshopButton();
+        await proshopCategoryPage.selectCategory(category);
+        await proshopProductPage.addToCart(productName);
+        await bottomButtonsPage.tapPayButton();
+        await paymentSelectionPage.selectPaymentType('check');
+        await checkPaymentPage.addCheckNumber(randomCheckNumber);
+        await bottomButtonsPage.tapPayButton();
+        await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
+        await receiptPage.clickProShop();
+    });
 
-    // it('Member', async () => {
-        // await navBar.openNav();
-        // await navDrawer.clickProshopButton();
-        // await proshopCategoryPage.selectCategory(category);
-        // await proshopProductPage.addToCart(productName);
-        // await bottomButtonsPage.tapPayButton();
-    // });
+//todo find a way to interact with the member drop down
+    it('Member', async () => {
+        await navBar.openNav();
+        await navDrawer.clickProshopButton();
+        await proshopCategoryPage.selectCategory(category);
+        await proshopProductPage.addToCart(productName);
+        await bottomButtonsPage.tapPayButton();
+        await paymentSelectionPage.selectPaymentType('customercharge');
+        await memberPayment.searcMembers(memberEmail);
+        await sleep(2500);
+        await memberPayment.selectFirstMemberResult();
+        await bottomButtonsPage.tapPayButton();
+        await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
+        await receiptPage.clickProShop();
+    });
 
-    // //split payments
+// //split payments
 
     // it('Split Payment | Cash + Credit', async () => {
         // await navBar.openNav();

@@ -29,6 +29,10 @@ export default class Page {
         (browser as any).execute('mobile: scroll', { strategy: `${strategy_text}`, selector: `${selector_text}` });
     }
 
+    public getPageSource () {
+        (browser as any).getPageSource();
+    }
+
 }
 
 
