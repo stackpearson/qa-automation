@@ -2,7 +2,7 @@ import { Options } from '@wdio/types';
 import '@wdio/globals';
 import { Capabilities } from 'selenium-webdriver';
 import loginPage from './src/pageobjects/login.page';
-import navBarPage from './src/pageobjects/navBar.page';
+import navBarPage from './src/pageobjects/sharedScreens/navBar.page';
 export const config: Options.Testrunner = {
     //
     // ====================
@@ -51,7 +51,7 @@ export const config: Options.Testrunner = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -216,7 +216,7 @@ export const config: Options.Testrunner = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    //need to figure out why this keeps getting skipped
+    //login before every test suite
     before: async function () {
         // Run login before each test globally
         const users = {
@@ -270,10 +270,8 @@ export const config: Options.Testrunner = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
+    //logout after every test
     after: async function() {
-        // await proshopPage.openNav();
-        // await navBarPage.openNav();
-        // await navDrawer.logout();
         await navBarPage.logOut();
     },
 

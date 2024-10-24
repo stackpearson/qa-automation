@@ -1,3 +1,4 @@
+import { $ } from '@wdio/globals'
 import { browser } from '@wdio/globals';
 
 /**
@@ -26,6 +27,10 @@ export default class Page {
 
     public scrollToElement (strategy_text: string, selector_text: string) {
         (browser as any).execute('mobile: scroll', { strategy: `${strategy_text}`, selector: `${selector_text}` });
+    }
+
+    public getPageSource () {
+        (browser as any).getPageSource();
     }
 
 }
