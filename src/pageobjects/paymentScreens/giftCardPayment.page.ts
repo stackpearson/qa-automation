@@ -2,10 +2,19 @@ import { $, browser } from '@wdio/globals'
 import Page from '../page';
 
 class GiftCardPicker extends Page {
+    public get giftCardAmountField() {
+        return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/etGiftCardAmount"]');
+    };
+
     public get giftCardSearchField () {
         return $('//android.widget.AutoCompleteTextView[@resource-id="tenfore.birdie:id/etGiftCardLookup"]');
     };
     //methods
+
+    public async enterGiftAmount(amount: string) {
+        await this.giftCardAmountField.waitForClickable();
+        await this.giftCardAmountField.setValue(amount)
+    }
 
     public async searchGiftCard (gcIdentifier: string) {
         await this.giftCardSearchField.click();

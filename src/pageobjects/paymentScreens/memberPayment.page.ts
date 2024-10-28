@@ -6,7 +6,16 @@ class MemberPicker extends Page {
         return $('//android.widget.AutoCompleteTextView[@resource-id="tenfore.birdie:id/fpspc_etCustomerLookup"]');
     };
 
+    public get memberChargeAmount () {
+        return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/fpspc_etAmount"]')
+    }
+
     //methods
+
+    public async enterMemberChargeAmount(amount: string){
+        await this.memberChargeAmount.isEnabled();
+        await this.memberChargeAmount.setValue(amount)
+    }
 
     public async searcMembers (memberIdentifier: string) {
         await this.memberSearchField.click();

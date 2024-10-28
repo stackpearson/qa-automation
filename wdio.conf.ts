@@ -65,7 +65,7 @@ export const config: Options.Testrunner = {
     //     'appium:deviceName': 'birdie-emulator',
     //     'appium:platformVersion': '15.0',
     //     'appium:automationName': 'UiAutomator2',
-    //     "appium:app": "C:\\Users\\sawye\\Desktop\\TenFore\\Dev\\qa-automation\\releases\\5.6.17.6c.apk",
+    //     "appium:app": "C:\\Users\\sawye\\Desktop\\TenFore\\Dev\\qa-automation\\releases\\5.6.17.11.apk",
     //     "appium:ensureWebviewsHavePages": true,
     //     "appium:nativeWebScreenshot": true,
     //     "appium:newCommandTimeout": 3600,

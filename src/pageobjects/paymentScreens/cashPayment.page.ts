@@ -3,25 +3,31 @@ import Page from '../page';
 
 class PaymentSelectionPage extends Page {
     //selectors
+    public get cashAmountField () {
+        return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/fpspc_etPayAmount"]');
+        //android.widget.EditText[@resource-id="tenfore.birdie:id/fpspc_etPayAmount"]
+        //android.widget.EditText[@resource-id="tenfore.birdie:id/fpspc7_etPayAmount"]
+    };
+
     public fastPayExact () {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/fpspc_btnCashPay1"]');
-    }
+    };
 
     public fastPay2 () {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/fpspc_btnCashPay2"]');
-    }
+    };
 
     public fastPay3 () {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/fpspc_btnCashPay3"]');
-    }
+    };
 
     public fastPay4 () {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/fpspc_btnCashPay4"]');
-    }
+    };
 
     public fastPay5 () {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/fpspc_btnCashPay5"]');
-    }
+    };
 
     //methods
 
@@ -53,7 +59,16 @@ class PaymentSelectionPage extends Page {
         }
     }
 
+    public async enterCashAmount(amount: string) {
+        await this.cashAmountField.waitForEnabled();
+        await this.cashAmountField.setValue(amount);
+    }
 
-}
+    public async waitForCashAmount() {
+        await this.cashAmountField.isDisplayed();
+    }
+
+
+} 
 
 export default new PaymentSelectionPage();

@@ -1,5 +1,5 @@
 import { $ } from '@wdio/globals'
-import { browser } from '@wdio/globals';
+import { browser, driver } from '@wdio/globals';
 
 /**
 * main page object containing all methods, selectors, and functionality
@@ -23,6 +23,10 @@ export default class Page {
     */
     public clickElement (elementSelector: string) {
         return $(elementSelector).click(); // Replace with your mobile-specific selector
+    }
+
+    public hideKeyboard () {
+        return (driver as any).hideKeyboard();
     }
 
     public scrollToElement (strategy_text: string, selector_text: string) {
