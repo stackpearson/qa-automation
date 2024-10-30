@@ -8,23 +8,23 @@ class CashPaymentQO extends Page {
     };
 
     public fastPayExact () {
-        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpspc_btnCashPay1"]');
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpcsh_btnCashPay1"]');
     };
 
     public fastPay2 () {
-        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpspc_btnCashPay2"]');
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpcsh_btnCashPay2"]');
     };
 
     public fastPay3 () {
-        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpspc_btnCashPay3"]');
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpcsh_btnCashPay3"]');
     };
 
     public fastPay4 () {
-        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpspc_btnCashPay4"]');
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpcsh_btnCashPay4"]');
     };
 
     public fastPay5 () {
-        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpspc_btnCashPay5"]');
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/frpcsh_btnCashPay5"]');
     };
 
     //methods

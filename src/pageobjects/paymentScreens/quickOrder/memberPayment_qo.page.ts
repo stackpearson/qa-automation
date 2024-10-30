@@ -7,7 +7,7 @@ class MemberPickerQO extends Page {
     };
 
     public get memberChargeAmount () {
-        return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/fpspc_etAmount"]')
+        return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/frpcus_etPayAmount"]')
     }
 
     //methods

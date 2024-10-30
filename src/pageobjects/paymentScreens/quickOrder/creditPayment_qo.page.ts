@@ -4,7 +4,7 @@ import Page from '../../page';
 class CreditPaymentQO extends Page {
     //selectors
     public get chargeAmountField () {
-        return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/fpspc7_etPayAmount"]');
+        return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/frpcr7_etPayAmount"]');
     };
 
     public get loadingSpinner () {

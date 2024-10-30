@@ -9,7 +9,7 @@ class QuickOrderCartPage extends Page {
     }
 
     public get totalOwedText () {
-        return $('//android.widget.TextView[@resource-id="tenfore.birdie:id/fpspsum_tvAmountOwed"]');
+        return $('//android.widget.TextView[@resource-id="tenfore.birdie:id/frpsum_tvAmountOwed"]');
     }
 
     //methods
