@@ -1,5 +1,5 @@
 import { $, browser } from '@wdio/globals'
-import Page from '../page';
+import Page from '../../page';
 
 class CreditPayment extends Page {
     //selectors

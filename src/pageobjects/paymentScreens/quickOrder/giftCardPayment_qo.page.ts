@@ -1,13 +1,13 @@
 import { $, browser } from '@wdio/globals'
-import Page from '../page';
+import Page from '../../page';
 
-class GiftCardPicker extends Page {
+class GiftCardPickerQO extends Page {
     public get giftCardAmountField() {
         return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/etGiftCardAmount"]');
     };
 
     public get giftCardSearchField () {
-        return $('//android.widget.AutoCompleteTextView[@resource-id="tenfore.birdie:id/etGiftCardLookup"]');
+        return $('//android.widget.AutoCompleteTextView[@resource-id="tenfore.birdie:id/frpgc_etGiftCardLookup"]');
     };
     //methods
 
@@ -31,7 +31,7 @@ class GiftCardPicker extends Page {
         await (browser as any).action('pointer', {
             parameters: { pointerType: 'touch'},
         })
-            .move({ x: 1100, y: 250})
+            .move({ x: 1200, y: 500})
             .down()
             .pause(100)
             .up()
@@ -40,4 +40,7 @@ class GiftCardPicker extends Page {
 
 }
 
-export default new GiftCardPicker();
+	
+// [1023,373][1473,448]
+
+export default new GiftCardPickerQO();

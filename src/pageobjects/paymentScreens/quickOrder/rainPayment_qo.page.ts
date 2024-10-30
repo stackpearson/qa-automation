@@ -1,7 +1,7 @@
 import { $, browser } from '@wdio/globals'
-import Page from '../page';
+import Page from '../../page';
 
-class RainCheckPicker extends Page {
+class RainCheckPickerQO extends Page {
     public get rainCheckSearchField () {
         return $('//android.widget.AutoCompleteTextView[@resource-id="tenfore.birdie:id/fpspr_etCustomerLookup"]');
     };
@@ -27,4 +27,4 @@ class RainCheckPicker extends Page {
 
 }
 
-export default new RainCheckPicker();
+export default new RainCheckPickerQO();

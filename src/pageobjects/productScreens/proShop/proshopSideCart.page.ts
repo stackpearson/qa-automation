@@ -1,7 +1,7 @@
-import { $, browser, driver } from '@wdio/globals'
-import Page from '../page';
+import { $, driver } from '@wdio/globals'
+import Page from '../../page';
 import { touchAction } from 'webdriverio/build/commands/browser';
-import { tap } from 'node:test/reporters';
+
 
 class ProshopSideCartPage extends Page {
     //selectors

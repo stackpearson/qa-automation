@@ -1,20 +1,20 @@
 import bottomButtonsPage from '../../src/pageobjects/sharedScreens/bottomButtons.page';
-import cashPaymentPage from '../../src/pageobjects/paymentScreens/cashPayment.page';
-import checkPaymentPage from '../../src/pageobjects/paymentScreens/checkPayment.page';
-import creditPaymentPage from '../../src/pageobjects/paymentScreens/creditPayment.page';
-import giftCardPaymentPage from '../../src/pageobjects/paymentScreens/giftCardPayment.page';
-import memberPayment from '../../src/pageobjects/paymentScreens/memberPayment.page';
+import cashPaymentPage from '../../src/pageobjects/paymentScreens/proShop/cashPayment.page';
+import checkPaymentPage from '../../src/pageobjects/paymentScreens/proShop/checkPayment.page';
+import creditPaymentPage from '../../src/pageobjects/paymentScreens/proShop/creditPayment.page';
+import giftCardPaymentPage from '../../src/pageobjects/paymentScreens/proShop/giftCardPayment.page';
+import memberPayment from '../../src/pageobjects/paymentScreens/proShop/memberPayment.page';
 import navBar from '../../src/pageobjects/sharedScreens/navBar.page';
 import navDrawer from '../../src/pageobjects/sharedScreens/navdrawer.page';
 import paymentSelectionPage from '../../src/pageobjects/paymentScreens/paymentSelection.page';
-import proShopCartPage from '../../src/pageobjects/checkout/proShopCart.page';
-import proshopCategoryPage from '../../src/pageobjects/productScreens/proshopCategory.page';
-import proshopProductPage from '../../src/pageobjects/productScreens/proshopProduct.page';
-import rainCheck from '../../src/pageobjects/paymentScreens/rainPayment.page';
-import receiptPage from '../../src/pageobjects/checkout/receipt.page';
+import proShopCartPage from '../../src/pageobjects/checkout/proShop/proShopCart.page';
+import proshopCategoryPage from '../../src/pageobjects/productScreens/proShop/proshopCategory.page';
+import proshopProductPage from '../../src/pageobjects/productScreens/proShop/proshopProduct.page';
+import rainCheck from '../../src/pageobjects/paymentScreens/proShop/rainPayment.page';
+import receiptPage from '../../src/pageobjects/checkout/proShop/receipt.page';
 import {expect as wdioExpect } from '@wdio/globals';
 
-describe('Proshop Payments -', () => {
+describe('Proshop Payments', () => {
 
     const category = 'Shirts - SO';
     const memberEmail = 'sawyer.pearson+saved.card@tenfore.golf';
@@ -67,7 +67,7 @@ describe('Proshop Payments -', () => {
         await receiptPage.tapReceiptButton('proshop')
     });
 
-//todo improve rain check methods, same issue as GCs
+// todo improve rain check methods, same issue as GCs
     it('Rain Check', async () => {
         await navBar.openNav();
         await navDrawer.clickProshopButton();
@@ -96,7 +96,7 @@ describe('Proshop Payments -', () => {
         await receiptPage.tapReceiptButton('proshop')
     });
 
-//todo find a way to interact with the member drop down
+// //todo find a way to interact with the member drop down
     it('Member', async () => {
         await navBar.openNav();
         await navDrawer.clickProshopButton();

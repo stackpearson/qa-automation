@@ -1,5 +1,5 @@
 import { $ } from '@wdio/globals'
-import Page from '../page';
+import Page from '../../page';
 
 class ReceiptPage extends Page {
     //selectors
@@ -16,10 +16,6 @@ class ReceiptPage extends Page {
    
 
     //methods
-    public async clickProShop() {
-        await this.proShopButton().click();
-     }
-
     public async tapReceiptButton(button: 'proshop' | 'quickorder') {
         const navButtons = {
             proshop: this.proShopButton,
