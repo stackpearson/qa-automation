@@ -1,13 +1,13 @@
 import { $, browser } from '@wdio/globals'
-import Page from '../page';
+import Page from '../../page';
 
-class MemberPicker extends Page {
+class MemberPickerQO extends Page {
     public get memberSearchField () {
-        return $('//android.widget.AutoCompleteTextView[@resource-id="tenfore.birdie:id/fpspc_etCustomerLookup"]');
+        return $('//android.widget.AutoCompleteTextView[@resource-id="tenfore.birdie:id/frpcus_etCustomerLookup"]');
     };
 
     public get memberChargeAmount () {
-        return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/fpspc_etAmount"]')
+        return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/frpcus_etPayAmount"]')
     }
 
     //methods
@@ -26,14 +26,12 @@ class MemberPicker extends Page {
         await (browser as any).action('pointer', {
             parameters: { pointerType: 'touch'},
         })
-            .move({ x: 1000, y: 550 })
+            .move({ x: 950, y: 450 })
             .down()
             .pause(100)
             .up()
             .perform();
     }
-
-
 }
 
-export default new MemberPicker();
+export default new MemberPickerQO();
