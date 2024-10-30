@@ -1,27 +1,22 @@
-import proshopCategoryPage from '../../src/pageobjects/productScreens/proshopCategory.page';
-import proshopProductPage from '../../src/pageobjects/productScreens/proshopProduct.page';
-import bottomButtonsPage from '../../src/pageobjects/sharedScreens/bottomButtons.page';
-import paymentSelectionPage from '../../src/pageobjects/paymentScreens/paymentSelection.page';
-import cashPaymentPage from '../../src/pageobjects/paymentScreens/cashPayment.page';
-import receiptPage from '../../src/pageobjects/checkout/receipt.page';
+import createTabPage from '../../src/pageobjects/tabs/createTab.page';
 import navDrawer from '../../src/pageobjects/sharedScreens/navdrawer.page';
 import navBar from '../../src/pageobjects/sharedScreens/navBar.page';
+import tabPage from '../../src/pageobjects/tabs/tabs.page';
 import {expect as wdioExpect } from '@wdio/globals';
 
-describe('Quick Order Payments -', () => {
+describe('Tab Payments -', () => {
 
     const category = 'Shirts - SO';
     const productName = 'Nike Shirt';
+    const tabUser = 'sawyer.pearson+saved.card@tenfore.golf'
 
-    //todo: automate all payment scenarios for quick order
+    it('Credit', async () => {
+        await navBar.openNav();
+        await navDrawer.clickTabButton();
+        await tabPage.tapCreateTab();
+        await createTabPage.startTab(tabUser, false);
 
-    // it('Credit', async () => {
-    //     await navBar.openNav();
-    //     await navDrawer.clickProshopButton();
-    //     await proshopCategoryPage.selectCategory(category);
-    //     await proshopProductPage.addToCart(productName);
-    //     await bottomButtonsPage.tapPayButton();
-    // });
+    });
 
     // it('Cash', async () => {
     //     await navBar.openNav();
