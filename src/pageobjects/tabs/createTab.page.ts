@@ -22,11 +22,16 @@ class CreateTabPage extends Page {
 
     //methods
 
-    public async startTab (customer: string, savedCard: boolean) {
-        const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+    /**
+     * From the main tabs menu, this function will create a tab for the user you input.
+     * 
+     * @param customer the exact email for a valid customer whom  you want to create a tab for
+     * @param savedCard true if this customer has a saved card on file you want to use, false if you want to scan a card to use
+     */
+
+    public async startTab (customerEmail: string, savedCard: boolean) {
         await this.customerSearchBar.click();
-        await this.customerSearchBar.setValue(customer);
-        await sleep(500) //check for loading spinner instead of sleep
+        await this.customerSearchBar.setValue(customerEmail);
         await this.searchLoadingSpinner.waitForDisplayed({timeout: 1000})
         await this.searchLoadingSpinner.waitForDisplayed({reverse: true, timeout: 5000})
         await this.tapTabSearchResult();
@@ -55,8 +60,6 @@ class CreateTabPage extends Page {
             .perform();
     }
 
-	
-    // [24,542][1896,629]
 }
 
 export default new CreateTabPage();

@@ -1,7 +1,7 @@
 import { $, browser } from '@wdio/globals'
 import Page from '../../page';
 
-class GiftCardPickerQO extends Page {
+class GiftCardPickerTab extends Page {
     public get giftCardAmountField() {
         return $('//android.widget.EditText[@resource-id="tenfore.birdie:id/etGiftCardAmount"]');
     };
@@ -40,4 +40,4 @@ class GiftCardPickerQO extends Page {
 
 }
 
-export default new GiftCardPickerQO();
+export default new GiftCardPickerTab();

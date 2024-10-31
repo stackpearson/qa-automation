@@ -1,54 +1,111 @@
+import bottomButtons from '../../src/pageobjects/sharedScreens/bottomButtons.page';
+import categoryPage from '../../src/pageobjects/productScreens/tab/tabCategory.page';
+import checkPayment from '../../src/pageobjects/paymentScreens/tab/checkPayment_tab.page';
 import createTabPage from '../../src/pageobjects/tabs/createTab.page';
+import creditPayment from '../../src/pageobjects/paymentScreens/tab/creditPayment_tab.page';
+import giftCardPayment from '../../src/pageobjects/paymentScreens/tab/giftCardPayment_tab.page';
+import memberPayment from '../../src/pageobjects/paymentScreens/tab/memberPayment_tab.page';
+import paymentSelection from '../../src/pageobjects/paymentScreens/paymentSelection.page';
+import productPage from '../../src/pageobjects/productScreens/tab/tabProduct.page';
 import navDrawer from '../../src/pageobjects/sharedScreens/navdrawer.page';
 import navBar from '../../src/pageobjects/sharedScreens/navBar.page';
+import receiptPage from '../../src/pageobjects/checkout/tab/tabReceipt.page';
 import tabPage from '../../src/pageobjects/tabs/tabs.page';
 import {expect as wdioExpect } from '@wdio/globals';
 
 describe('Tab Payments -', () => {
 
-    const category = 'Shirts - SO';
-    const productName = 'Nike Shirt';
-    const tabUser = 'sawyer.pearson+saved.card@tenfore.golf'
-
+    const category = 'Domestic Beer';
+    const productName = 'Michelob Ultra';
+    const customerDetails = {
+        email: 'sawyer.pearson+saved.card@tenfore.golf',
+        name: 'Sawyer Card'
+    }
+    const fullGiftCardUPC = '1024225254';
+    const randomCheckNumber = Math.floor(100 + Math.random() * 900).toString();
+    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
     it('Credit', async () => {
         await navBar.openNav();
         await navDrawer.clickTabButton();
         await tabPage.tapCreateTab();
-        await createTabPage.startTab(tabUser, false);
-
+        await createTabPage.startTab(customerDetails.email, true);
+        await tabPage.enterIntoTab(customerDetails.name);
+        await categoryPage.selectCategory(category);
+        await productPage.addToCart(productName);
+        await bottomButtons.tapPayButton('tab');
+        await paymentSelection.selectPaymentType('credit');
+        await bottomButtons.tapPayButton('applyPayment');
+        await creditPayment.waitForCardReader();
+        await wdioExpect(receiptPage.orderCompleteHeader().toBeDisplayed());
+        await receiptPage.tapReceiptButton('tabs');
     });
 
-    // it('Cash', async () => {
-    //     await navBar.openNav();
-    //     await navDrawer.clickProshopButton();
-    //     await proshopCategoryPage.selectCategory(category);
-    //     await proshopProductPage.addToCart(productName);
-    //     await bottomButtonsPage.tapPayButton();
-    // });
+    it('Cash', async () => {
+        await navBar.openNav();
+        await navDrawer.clickTabButton();
+        await tabPage.tapCreateTab();
+        await createTabPage.startTab(customerDetails.email, true);
+        await tabPage.enterIntoTab(customerDetails.name);
+        await categoryPage.selectCategory(category);
+        await productPage.addToCart(productName);
+        await bottomButtons.tapPayButton('tab');
+        await paymentSelection.selectPaymentType('cash');
+        await bottomButtons.tapPayButton('applyPayment');
+        await wdioExpect(receiptPage.orderCompleteHeader().toBeDisplayed());
+        await receiptPage.tapReceiptButton('tabs');
+    });
 
-    // it('Gift Card', async () => {
-    //     await navBar.openNav();
-    //     await navDrawer.clickProshopButton();
-    //     await proshopCategoryPage.selectCategory(category);
-    //     await proshopProductPage.addToCart(productName);
-    //     await bottomButtonsPage.tapPayButton();
-    // });
+    it('Gift Card', async () => {
+        await navBar.openNav();
+        await navDrawer.clickTabButton();
+        await tabPage.tapCreateTab();
+        await createTabPage.startTab(customerDetails.email, true);
+        await tabPage.enterIntoTab(customerDetails.name);
+        await categoryPage.selectCategory(category);
+        await productPage.addToCart(productName);
+        await bottomButtons.tapPayButton('tab');
+        await paymentSelection.selectPaymentType('giftcard');
+        await giftCardPayment.searchGiftCard(fullGiftCardUPC);
+        await sleep(2500);
+        await giftCardPayment.tapGiftCardResult();
+        await bottomButtons.tapPayButton('applyPayment');
+        await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
+        await receiptPage.tapReceiptButton('tabs');
+    });
 
-    // it('Check', async () => {
-    //     await navBar.openNav();
-    //     await navDrawer.clickProshopButton();
-    //     await proshopCategoryPage.selectCategory(category);
-    //     await proshopProductPage.addToCart(productName);
-    //     await bottomButtonsPage.tapPayButton();
-    // });
+    it('Check', async () => {
+        await navBar.openNav();
+        await navDrawer.clickTabButton();
+        await tabPage.tapCreateTab();
+        await createTabPage.startTab(customerDetails.email, true);
+        await tabPage.enterIntoTab(customerDetails.name);
+        await categoryPage.selectCategory(category);
+        await productPage.addToCart(productName);
+        await bottomButtons.tapPayButton('tab');
+        await paymentSelection.selectPaymentType('check');
+        await checkPayment.addCheckNumber(randomCheckNumber);
+        await bottomButtons.tapPayButton('applyPayment');
+        await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
+        await receiptPage.tapReceiptButton('tabs');
+    });
 
-    // it('Member', async () => {
-    //     await navBar.openNav();
-    //     await navDrawer.clickProshopButton();
-    //     await proshopCategoryPage.selectCategory(category);
-    //     await proshopProductPage.addToCart(productName);
-    //     await bottomButtonsPage.tapPayButton();
-    // });
+    it('Member', async () => {
+        await navBar.openNav();
+        await navDrawer.clickTabButton();
+        await tabPage.tapCreateTab();
+        await createTabPage.startTab(customerDetails.email, true);
+        await tabPage.enterIntoTab(customerDetails.name);
+        await categoryPage.selectCategory(category);
+        await productPage.addToCart(productName);
+        await bottomButtons.tapPayButton('tab');
+        await paymentSelection.selectPaymentType('customercharge');
+        await memberPayment.searcMembers(customerDetails.email);
+        await sleep(2500);
+        await memberPayment.selectFirstMemberResult();
+        await bottomButtons.tapPayButton('applyPayment');
+        await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
+        await receiptPage.tapReceiptButton('tabs')
+    });
 
     // //split payments
 
