@@ -84,6 +84,13 @@ class NavDrawer extends Page {
         await this.quickOrderButton.click();
     }
 
+    public async clickTabButton() {
+        await this.tabButton.click();
+    }
+
+    public async clickTableButton() {
+        await this.tableButton.click();
+    }
 
     public async logout () {
         this.scrollToElement('accessibility id', 'tenfore.birdie:id/nav_log_out')

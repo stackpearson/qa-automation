@@ -31,6 +31,10 @@ class BottomButtonsPage extends Page {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/arqo_btnQuickApplyPayment"]')
     }
 
+    public payButtonTab () {
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnApplyTabPayment"]')
+    }
+
     public resetButton() {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnResetOrder"]');
     }
@@ -52,17 +56,18 @@ class BottomButtonsPage extends Page {
         await this.orderNotesButton().click();
     }
 
-    public async tapPayButton(button: 'proshop' | 'quickorder' | 'applyPayment') {
+    public async tapPayButton(button: 'applyPayment' | 'proshop' | 'quickorder' | 'tab' ) {
         const navButtons = {
             applyPayment: this.payButton,
             proshop: this.payButton,
-            quickorder: this.payButtonQuickPay
+            quickorder: this.payButtonQuickPay,
+            tab: this.payButtonTab,
         }
 
         const buttonToSelect = navButtons[button];
         if (buttonToSelect) {
             const element = buttonToSelect.call(this);
-            await element.waitForEnabled();
+            await element.waitForEnabled({timeout: 5000});
             await element.click();
         }
     }
