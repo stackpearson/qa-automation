@@ -39,6 +39,10 @@ class BottomButtonsPage extends Page {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnResetOrder"]');
     }
 
+    public quickOrder() {
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnQuickOrder"]')
+    }
+
     public teeSheetButton() {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnTeeSheet"]');
     }

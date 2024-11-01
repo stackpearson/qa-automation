@@ -7,6 +7,10 @@ class ProshopCategoryPage extends Page {
         return await $(`//android.widget.TextView[@resource-id="tenfore.birdie:id/gipg_tvLine1" and @text="${name}"]`);
     }
 
+    public async loadingSpinner() {
+        return $('//android.widget.ImageView[@resource-id="tenfore.birdie:id/logo"]')
+    }
+
     //methods
     public async selectCategory(name: string) {
         const tile = await this.categoryTileByName(name);
