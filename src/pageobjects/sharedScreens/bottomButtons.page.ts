@@ -17,6 +17,8 @@ class BottomButtonsPage extends Page {
 
     public payButton() {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnApplyPayment"]');
+        //android.widget.Button[@resource-id="tenfore.birdie:id/artp7_btnApplyPayment"]
+        
     } 
 
     public popButton() {
@@ -35,8 +37,20 @@ class BottomButtonsPage extends Page {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnApplyTabPayment"]')
     }
 
+    public payButtonTable () {
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/artp7_btnApplyPayment"]'); 
+    }
+
+    public payButtonTable_checkout() {
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnTableOrderApplyPayment"]');
+    }
+
     public resetButton() {
         return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnResetOrder"]');
+    }
+
+    public quickOrder() {
+        return $('//android.widget.Button[@resource-id="tenfore.birdie:id/btnQuickOrder"]')
     }
 
     public teeSheetButton() {
@@ -56,12 +70,14 @@ class BottomButtonsPage extends Page {
         await this.orderNotesButton().click();
     }
 
-    public async tapPayButton(button: 'applyPayment' | 'proshop' | 'quickorder' | 'tab' ) {
+    public async tapPayButton(button: 'applyPayment' | 'proshop' | 'quickorder' | 'tab' | 'table' | 'applyPayment_Table' ) {
         const navButtons = {
             applyPayment: this.payButton,
             proshop: this.payButton,
             quickorder: this.payButtonQuickPay,
             tab: this.payButtonTab,
+            table: this.payButtonTable,
+            applyPayment_Table: this.payButtonTable_checkout,
         }
 
         const buttonToSelect = navButtons[button];
