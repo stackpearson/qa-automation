@@ -14,7 +14,6 @@ import navDrawer from '../../src/pageobjects/sharedScreens/navdrawer.page';
 import navBar from '../../src/pageobjects/sharedScreens/navBar.page';
 import tableMap from '../../src/pageobjects/tables/tableMap.page';
 import {expect as wdioExpect } from '@wdio/globals';
-import giftCardPayment_tabPage from '../../src/pageobjects/paymentScreens/table/giftCardPayment_tab.page';
 
 describe('Table Payments -', () => {
     const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
@@ -36,7 +35,7 @@ describe('Table Payments -', () => {
         await bottomButtonsPage.tapPayButton('table');
         await creditPayment.waitForCardReader();
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Cash', async () => {
@@ -51,7 +50,7 @@ describe('Table Payments -', () => {
         await cashPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Gift Card', async () => {
@@ -65,11 +64,11 @@ describe('Table Payments -', () => {
         await paymentSelectionPage.selectPaymentType('giftcard');
         await giftCardPayment.searchGiftCard(fullGiftCardUPC);
         await sleep(2500);
-        await giftCardPayment.tapGiftCardResult()
+        await giftCardPayment.tapGiftCardResult();
         await giftCardPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Check', async () => {
@@ -85,7 +84,7 @@ describe('Table Payments -', () => {
         await checkPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Member', async () => {
@@ -103,10 +102,10 @@ describe('Table Payments -', () => {
         await memberPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
-    // //split payments
+    //split payments
 
     it('Split Payment | Cash + Credit', async () => {
         await navBar.openNav();
@@ -127,7 +126,7 @@ describe('Table Payments -', () => {
         await bottomButtonsPage.tapPayButton('table');
         await creditPayment.waitForCardReader();
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Split Payment | Cash + Gift Card', async () => {
@@ -151,7 +150,7 @@ describe('Table Payments -', () => {
         await giftCardPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Split Payment | Cash + Check', async () => {
@@ -173,7 +172,7 @@ describe('Table Payments -', () => {
         await checkPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Split Payment | Cash + Member', async () => {
@@ -197,7 +196,7 @@ describe('Table Payments -', () => {
         await memberPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Split Payment | Credit + Gift Card', async () => {
@@ -221,7 +220,7 @@ describe('Table Payments -', () => {
         await giftCardPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Split Payment | Credit + Check', async () => {
@@ -243,7 +242,7 @@ describe('Table Payments -', () => {
         await checkPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Split Payment | Credit + Member', async () => {
@@ -267,7 +266,7 @@ describe('Table Payments -', () => {
         await memberPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Split Payment | Gift Card + Check', async () => {
@@ -292,7 +291,7 @@ describe('Table Payments -', () => {
         await creditPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
     it('Split Payment | Gift Card + Member', async () => {
@@ -319,7 +318,7 @@ describe('Table Payments -', () => {
         await giftCardPayment.selectSeat('1');
         await bottomButtonsPage.tapPayButton('table');
         await wdioExpect(receiptPage.orderCompleteHeader()).toBeDisplayed();
-        await receiptPage.tapReceiptButton('tables')
+        await receiptPage.tapReceiptButton('tables');
     });
 
 })
