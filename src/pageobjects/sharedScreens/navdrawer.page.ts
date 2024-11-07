@@ -92,6 +92,10 @@ class NavDrawer extends Page {
         await this.tableButton.click();
     }
 
+    public async clickTeeSheetButton() {
+        await this.teeSheetButton.click();
+    }
+
     public async logout () {
         this.scrollToElement('accessibility id', 'tenfore.birdie:id/nav_log_out')
         await this.logoutButton.click();
